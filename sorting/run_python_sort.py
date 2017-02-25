@@ -79,7 +79,7 @@ class Checker:
         return mean_cons, f_result
 
     def check_list_was_sorted(self, sorted_by_algorithm):
-        if len(sorted_by_algorithm) != self.sorted_data:
+        if len(sorted_by_algorithm) != len(self.sorted_data):
             print("Sorting algorithms miss some data.")
             return
         all_equal = all(i == j for i, j in zip(
