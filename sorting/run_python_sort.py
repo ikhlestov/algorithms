@@ -6,6 +6,7 @@ import os
 
 from py_sort.insertion import insertion_sort, insertion_sort_while_loop, \
     insertion_sort_optimized, insertion_sort_optimized_while_loop
+from py_sort.selection import selection_sort
 
 
 class Checker:
@@ -18,7 +19,8 @@ class Checker:
     available_algorithms = {
         'insertion': [insertion_sort, insertion_sort_while_loop,
                       insertion_sort_optimized,
-                      insertion_sort_optimized_while_loop]
+                      insertion_sort_optimized_while_loop],
+        'selection': [selection_sort],
     }
 
     def __init__(self, data_size, repeat_iterations):

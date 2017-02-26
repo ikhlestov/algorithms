@@ -16,3 +16,9 @@ Two version exist:
 
 - Non optimized - swap elements if one larger than another.
 - Optimized - swap only larger elements to the right, at the end of the loop insert handled element at required position.
+
+02. Selection sort
+~~~~~~~~~~~~~~~~~~
+
+In-place sorting algorithm.
+The algorithm proceeds by finding the smallest element in the unsorted sublist, exchanging (swapping) it with the leftmost unsorted element (putting it in sorted order), and moving the sublist boundaries one element to the right(`wiki page <https://en.wikipedia.org/wiki/Selection_sort>`__).
