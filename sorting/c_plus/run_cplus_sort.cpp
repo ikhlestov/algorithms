@@ -11,7 +11,8 @@
 using namespace std;
 
 typedef vector<int> (*VectorFunctionPointer)(vector<int>);
-typedef map<string, VectorFunctionPointer> functions_map_type;
+typedef map<string, VectorFunctionPointer> string_to_function;
+typedef map<string, string_to_function> string_to_function_map;
 
 struct time_and_vector
 {
@@ -42,8 +43,12 @@ time_and_vector measure_time_consumption(vector<int> (*sorting_algorithm)(vector
 int main(int argc, char *argv[])
 {
     // define some parameters
-    functions_map_type functions_map = {
-        {"insertion", insertion_sort}
+    string_to_function insertion {
+        {"insertion_sort", insertion_sort},
+        {"insertion_sort_optimized", insertion_sort_optimized}
+    };
+    string_to_function_map functions_map = {
+        {"insertion", insertion}
     };
     vector<string> functions_names_vec;
     string functions_names_string;
@@ -116,21 +121,28 @@ int main(int argc, char *argv[])
     cout << repeat_iterations << " repeat_iterations" << endl;
 
     // load data
-    vector<int> data_to_sort = load_data(data_size);
-    auto f_to_check = functions_map[algorithm_name];
-    
-    time_and_vector sort_results = measure_time_consumption(f_to_check, data_to_sort, repeat_iterations);
-    sort(data_to_sort.begin(), data_to_sort.end());
+    auto functions_map_to_check = functions_map[algorithm_name];
+    for (auto const& ifunction: functions_map_to_check)
+    {   
+        vector<int> data_to_sort = load_data(data_size);
+        auto f_name = ifunction.first;
+        cout << endl << f_name << endl;
+        auto f_to_check = ifunction.second;
+        
+        time_and_vector sort_results = measure_time_consumption(f_to_check, data_to_sort, repeat_iterations);
+        sort(data_to_sort.begin(), data_to_sort.end());
 
-    // check that algorithm works as expected
-    if (data_to_sort == sort_results.res_vector)
-    {
-        cout << "Elapsed time: " << sort_results.time_cons << " seconds." << endl;
-        cout << "Sorting algorithm work as expected." << endl;
-    }
-    else
-    {
-        cout << "Algorithm fail to sort data." << endl;
+        // check that algorithm works as expected
+        if (data_to_sort == sort_results.res_vector)
+        {
+            cout << "Elapsed time: " << sort_results.time_cons << " seconds." << endl;
+            cout << "Sorting algorithm work as expected." << endl;
+        }
+        else
+        {
+            cout << "Algorithm fail to sort data." << endl;
+        }
+        
     }
     return 0;
 }
