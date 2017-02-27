@@ -9,6 +9,7 @@
 #include "utils.h"
 #include "insertion.h"
 #include "selection.h"
+#include "merge.h"
 using namespace std;
 
 typedef vector<int> (*VectorFunctionPointer)(vector<int>);
@@ -51,9 +52,13 @@ int main(int argc, char *argv[])
     string_to_function selection {
         {"selection_sort", selection_sort},
     };
+    string_to_function merge {
+        {"merge_sort", merge_sort},
+    };
     string_to_function_map functions_map = {
         {"insertion", insertion},
-        {"selection", selection}
+        {"selection", selection},
+        {"merge", merge},
     };
     vector<string> functions_names_vec;
     string functions_names_string;
