@@ -8,6 +8,7 @@ from py_sort.insertion import insertion_sort, insertion_sort_while_loop, \
     insertion_sort_optimized, insertion_sort_optimized_while_loop
 from py_sort.selection import selection_sort
 from py_sort.merge import merge_sort
+from py_sort.heap import heap_sort
 
 
 class Checker:
@@ -23,6 +24,7 @@ class Checker:
                       insertion_sort_optimized_while_loop],
         'selection': [selection_sort],
         'merge': [merge_sort],
+        'heap': [heap_sort],
     }
 
     def __init__(self, data_size, repeat_iterations):
