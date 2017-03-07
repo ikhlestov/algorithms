@@ -12,10 +12,13 @@ from py_sort.heap import heap_sort
 
 
 class Checker:
-    data_size_to_int = {
-        'small': 100,
-        'medium': 10000,
-        'large': 50000,
+    data_size_to_f_name = {
+        'small': "100_numbers",
+        'medium': "10000_numbers",
+        'large': "50000_numbers",
+        'almost_sorted': 'almost_sorted',
+        'same_values': 'same_values',
+        'same_almost_sorted': 'same_almost_sorted'
     }
 
     available_algorithms = {
@@ -58,9 +61,9 @@ class Checker:
         return self._sorted_data
 
     def load_data(self):
-        numbers_qtty = self.data_size_to_int[self.data_size]
-        sort_f_name = os.path.join('data', '%d_numbers' % numbers_qtty)
-        with open(sort_f_name, 'r') as f:
+        f_name = self.data_size_to_f_name[self.data_size]
+        f_path = os.path.join('data', f_name)
+        with open(f_path, 'r') as f:
             data_to_sort = [int(i) for i in f.readlines()]
         return data_to_sort
 
@@ -104,7 +107,7 @@ if __name__ == '__main__':
         choices=list(Checker.available_algorithms.keys()),
         required=True)
     parser.add_argument(
-        "--data_size", "-d", choices=list(Checker.data_size_to_int.keys()),
+        "--data_size", "-d", choices=list(Checker.data_size_to_f_name.keys()),
         default="small")
     parser.add_argument(
         "--repeat_iterations", "-r", type=int, default=3)
