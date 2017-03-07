@@ -50,7 +50,7 @@ class MaxHeap:
         result = []
         while self.not_empty:
             result.append(self.pop_root())
-        return result[::1]
+        return result[::-1]
 
     @property
     def heap(self):
