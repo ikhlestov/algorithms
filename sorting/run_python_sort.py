@@ -9,6 +9,8 @@ from py_sort.insertion import insertion_sort, insertion_sort_while_loop, \
 from py_sort.selection import selection_sort
 from py_sort.merge import merge_sort
 from py_sort.heap import heap_sort
+from py_sort.quick import quick_sort_first_item_pivot, \
+    quick_sort_median_item_pivot
 
 
 class Checker:
@@ -28,6 +30,8 @@ class Checker:
         'selection': [selection_sort],
         'merge': [merge_sort],
         'heap': [heap_sort],
+        'quick': [quick_sort_first_item_pivot, quick_sort_median_item_pivot]
+        # 'quick': [quick_sort_median_item_pivot]
     }
 
     def __init__(self, data_size, repeat_iterations):
