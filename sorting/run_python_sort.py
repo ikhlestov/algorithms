@@ -11,6 +11,7 @@ from py_sort.merge import merge_sort
 from py_sort.heap import heap_sort
 from py_sort.quick import quick_sort_first_item_pivot, \
     quick_sort_median_item_pivot
+from py_sort.bubble import bubble_sort
 
 
 class Checker:
@@ -30,8 +31,8 @@ class Checker:
         'selection': [selection_sort],
         'merge': [merge_sort],
         'heap': [heap_sort],
-        'quick': [quick_sort_first_item_pivot, quick_sort_median_item_pivot]
-        # 'quick': [quick_sort_median_item_pivot]
+        'quick': [quick_sort_first_item_pivot, quick_sort_median_item_pivot],
+        'bubble': [bubble_sort],
     }
 
     def __init__(self, data_size, repeat_iterations):

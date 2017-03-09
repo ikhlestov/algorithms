@@ -111,3 +111,14 @@ Optimization:
 
 
 .. image:: https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Quicksort-diagram.svg/300px-Quicksort-diagram.svg.png
+
+
+06. Bubble sort
+~~~~~~~~~~~~~~~
+The algorithm starts at the beginning of the data set. It compares the first two elements, and if the first is greater than the second, it swaps them. It continues doing this for each pair of adjacent elements to the end of the data set. It then starts again with the first two elements, repeating until no swaps have occurred on the last pass.
+
+Pros:
+
+- Useful for sorted or nearly sorted arrays
+
+.. image:: https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif
