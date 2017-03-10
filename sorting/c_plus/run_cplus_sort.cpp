@@ -10,6 +10,7 @@
 #include "insertion.h"
 #include "selection.h"
 #include "merge.h"
+#include "bubble.h"
 using namespace std;
 
 typedef vector<int> (*VectorFunctionPointer)(vector<int>);
@@ -54,6 +55,9 @@ int main(int argc, char *argv[])
         }},
         {"merge", str_with_func {
             {"merge_sort", merge_sort},
+        }},
+        {"bubble", str_with_func {
+            {"bubble_sort", bubble_sort}
         }},
     };
     vector<string> functions_names_vec;
