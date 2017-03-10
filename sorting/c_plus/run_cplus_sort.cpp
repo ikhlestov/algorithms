@@ -11,6 +11,7 @@
 #include "selection.h"
 #include "merge.h"
 #include "bubble.h"
+#include "heap.h"
 using namespace std;
 
 typedef void (*VectorFunctionPointer)(vector<int>&);
@@ -59,7 +60,10 @@ int main(int argc, char *argv[])
             {"merge_sort", merge_sort},
         }},
         {"bubble", str_with_func {
-            {"bubble_sort", bubble_sort}
+            {"bubble_sort", bubble_sort},
+        }},
+        {"heap", str_with_func {
+            {"heap_sort", heap_sort},
         }},
     };
     vector<string> functions_names_vec;
