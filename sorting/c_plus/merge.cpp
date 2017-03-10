@@ -35,27 +35,26 @@ std::vector<int> merge_lists(std::vector<int> l1, std::vector<int> l2)
     return result;
 }
 
-std::vector<int> merge_sort(std::vector<int> arr)
+void merge_sort(std::vector<int>& arr)
 {
-    if (arr.size() <= 1)
+    if (arr.size() > 1)
     {
-        return arr;
-    }   
-    int split_idx = arr.size() / 2;
-    std::vector<int> l1;
-    std::vector<int> l2;
-    for (int i = 0; i < split_idx; i++)
-    {
-        l1.push_back(arr[i]);
+        int split_idx = arr.size() / 2;
+        std::vector<int> l1;
+        std::vector<int> l2;
+        for (int i = 0; i < split_idx; i++)
+        {
+            l1.push_back(arr[i]);
+        }
+        for (int i = split_idx; i < arr.size(); i++)
+        {
+            l2.push_back(arr[i]);
+        }
+
+        merge_sort(l1);
+        merge_sort(l2);
+
+        std::vector<int> merged;
+        arr = merge_lists(l1, l2);
     }
-    for (int i = split_idx; i < arr.size(); i++)
-    {
-        l2.push_back(arr[i]);
-    }
-    
-    l1 = merge_sort(l1);
-    l2 = merge_sort(l2);
-    std::vector<int> merged;
-    merged = merge_lists(l1, l2);
-    return merged;
 }

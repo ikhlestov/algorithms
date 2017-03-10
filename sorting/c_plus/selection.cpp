@@ -1,7 +1,7 @@
 #include "selection.h"
 #include <iostream>
 
-std::vector<int> selection_sort(std::vector<int> arr)
+void selection_sort(std::vector<int>& arr)
 {
     for (int i = 0; i < arr.size(); i++)
     {
@@ -18,5 +18,4 @@ std::vector<int> selection_sort(std::vector<int> arr)
             std::swap(arr[min_index], arr[i]);
         }
     }
-    return arr;
 }

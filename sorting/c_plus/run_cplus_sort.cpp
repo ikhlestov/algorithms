@@ -13,7 +13,7 @@
 #include "bubble.h"
 using namespace std;
 
-typedef vector<int> (*VectorFunctionPointer)(vector<int>);
+typedef void (*VectorFunctionPointer)(vector<int>&);
 typedef map<string, VectorFunctionPointer> str_with_func;
 
 struct time_and_vector
@@ -22,8 +22,8 @@ struct time_and_vector
     vector<int> res_vector;
 };
 
-time_and_vector measure_time_consumption(vector<int> (*sorting_algorithm)(vector<int>),
-                                         vector<int> arr_to_sort,
+time_and_vector measure_time_consumption(VectorFunctionPointer sorting_algorithm,
+                                         string data_size,
                                          int repeat_iterations)
 {
     double total_time_cons = 0;
@@ -31,11 +31,13 @@ time_and_vector measure_time_consumption(vector<int> (*sorting_algorithm)(vector
 
     for (int i = 0; i < repeat_iterations; i++)
     {
+        vector<int> arr_to_sort = load_data(data_size);
         clock_t begin = clock();
-        sort_results.res_vector = (*sorting_algorithm)(arr_to_sort);
+        (*sorting_algorithm)(arr_to_sort);
 
         clock_t end = clock();
         total_time_cons += (double(end - begin) / CLOCKS_PER_SEC);
+        sort_results.res_vector = arr_to_sort;
     }
     
     sort_results.time_cons = total_time_cons / repeat_iterations;
@@ -134,16 +136,18 @@ int main(int argc, char *argv[])
     auto functions_map_to_check = functions_map[algorithm_name];
     for (auto const& ifunction: functions_map_to_check)
     {   
-        vector<int> data_to_sort = load_data(data_size);
+        // vector<int> data_to_sort = load_data(data_size);
+        vector<int> data_to_compare = load_data(data_size);
         auto f_name = ifunction.first;
         cout << endl << f_name << endl;
         auto f_to_check = ifunction.second;
         
-        time_and_vector sort_results = measure_time_consumption(f_to_check, data_to_sort, repeat_iterations);
-        sort(data_to_sort.begin(), data_to_sort.end());
+        // time_and_vector sort_results = measure_time_consumption(f_to_check, data_to_sort, repeat_iterations);
+        time_and_vector sort_results = measure_time_consumption(f_to_check, data_size, repeat_iterations);
+        sort(data_to_compare.begin(), data_to_compare.end());
 
         // check that algorithm works as expected
-        if (data_to_sort == sort_results.res_vector)
+        if (data_to_compare == sort_results.res_vector)
         {
             cout << "Elapsed time: " << sort_results.time_cons << " seconds." << endl;
             cout << "Sorting algorithm work as expected." << endl;

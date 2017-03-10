@@ -1,6 +1,6 @@
 #include "insertion.h"
 
-std::vector<int> insertion_sort(std::vector<int> arr)
+void insertion_sort(std::vector<int>& arr)
 {
     for (int i=1; i < arr.size(); i++)
     {
@@ -14,10 +14,9 @@ std::vector<int> insertion_sort(std::vector<int> arr)
                 break;
         }
     }
-    return arr;
 }
 
-std::vector<int> insertion_sort_optimized(std::vector<int> arr)
+void insertion_sort_optimized(std::vector<int>& arr)
 {
     for (int i=1; i < arr.size(); i ++)
     {
@@ -34,5 +33,4 @@ std::vector<int> insertion_sort_optimized(std::vector<int> arr)
         }
         arr[j] = tmp;
     }
-    return arr;
 }

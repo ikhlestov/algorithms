@@ -2,4 +2,4 @@
 #include <algorithm>
 using namespace std;
 
-vector<int> bubble_sort(vector<int> arr);
+void bubble_sort(vector<int>& arr);
