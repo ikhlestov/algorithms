@@ -13,8 +13,7 @@
 using namespace std;
 
 typedef vector<int> (*VectorFunctionPointer)(vector<int>);
-typedef map<string, VectorFunctionPointer> string_to_function;
-typedef map<string, string_to_function> string_to_function_map;
+typedef map<string, VectorFunctionPointer> str_with_func;
 
 struct time_and_vector
 {
@@ -45,20 +44,17 @@ time_and_vector measure_time_consumption(vector<int> (*sorting_algorithm)(vector
 int main(int argc, char *argv[])
 {
     // define some parameters
-    string_to_function insertion {
-        {"insertion_sort", insertion_sort},
-        {"insertion_sort_optimized", insertion_sort_optimized}
-    };
-    string_to_function selection {
-        {"selection_sort", selection_sort},
-    };
-    string_to_function merge {
-        {"merge_sort", merge_sort},
-    };
-    string_to_function_map functions_map = {
-        {"insertion", insertion},
-        {"selection", selection},
-        {"merge", merge},
+    map<string, str_with_func> functions_map = {
+        {"insertion", str_with_func {
+            {"insertion_sort", insertion_sort},
+            {"insertion_sort_optimized", insertion_sort_optimized},
+        }},
+        {"selection", str_with_func {
+            {"selection_sort", selection_sort},
+        }},
+        {"merge", str_with_func {
+            {"merge_sort", merge_sort},
+        }},
     };
     vector<string> functions_names_vec;
     string functions_names_string;
