@@ -1,19 +1,31 @@
 #include "utils.h"
 
+string join(string joining, vector<string> vec_to_join);
+
 vector<int> load_data(string data_type)
 {   
-    int numbers_total;
+    map <string, string> data_type_to_f_name = {
+        {"small", "100_numbers"},
+        {"medium", "10000_numbers"},
+        {"large", "50000_numbers"},
+        {"almost_sorted", "almost_sorted"},
+        {"same_values", "same_values"},
+        {"same_almost_sorted", "same_almost_sorted"}
+    };
 
-    if (data_type == "small")
-        numbers_total = 100;
-    else if (data_type == "medium")
-        numbers_total = 10000;
-    else if (data_type == "large")
-        numbers_total = 50000;
-    else
-        throw std::invalid_argument("Only choises 'small', 'medium', 'large' are available.");
+    if (data_type_to_f_name.find(data_type) == data_type_to_f_name.end())
+    {
+        vector<string> avail_data_types;
+        for (auto const& imap: data_type_to_f_name)
+        {
+            avail_data_types.push_back(imap.first);
+        }
+        throw std::invalid_argument("Only choises {" + join(", ", avail_data_types) + "} are available.");
+    }
 
-    const string tmp = "data/" + std::to_string(numbers_total) + "_numbers";
+    string f_name = data_type_to_f_name[data_type];
+
+    const string tmp = "data/" + f_name;
     const char *filename = tmp.c_str();
     std::ifstream myfile;
     myfile.open(filename);

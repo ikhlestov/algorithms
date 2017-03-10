@@ -70,7 +70,10 @@ int main(int argc, char *argv[])
     string functions_names_string = join(", ", functions_names_vec);
     string algorithm_name;
     string data_size = "small";
-    vector<string> available_data_sizes = {"small", "medium", "large"};
+    vector<string> available_data_sizes = {
+        "small", "medium", "large",
+        "almost_sorted", "same_values", "same_almost_sorted"
+    };
     int repeat_iterations = 3;
     
     // parse an arguments
@@ -119,20 +122,19 @@ int main(int argc, char *argv[])
     if (!(find(available_data_sizes.begin(), available_data_sizes.end(), data_size) != available_data_sizes.end()))
     {
         cout << "You should provide correct data size.\n";
-        cout << "Available choises are: [" << join(", ", available_data_sizes) << "]" << endl;
+        cout << "Available choises are: {" << join(", ", available_data_sizes) << "}" << endl;
         exit(0);
     }
 
     // print parsed params
     cout << "Test running time for " << algorithm_name << " algorithms, ";
-    cout << "'" << data_size << "' data_size, ";
+    cout << "'" << data_size << "' data file, ";
     cout << repeat_iterations << " repeat_iterations" << endl;
 
     // load data
     auto functions_map_to_check = functions_map[algorithm_name];
     for (auto const& ifunction: functions_map_to_check)
     {   
-        // vector<int> data_to_sort = load_data(data_size);
         vector<int> data_to_compare = load_data(data_size);
         auto f_name = ifunction.first;
         cout << endl << f_name << endl;

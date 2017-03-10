@@ -41,7 +41,7 @@ class Checker:
 
     def check_algorithm(self, algorithm_name):
         algorithms_to_check = self.available_algorithms[algorithm_name]
-        print("Test running time for {} algorithms, '{}' data size, "
+        print("Test running time for {} algorithms, '{}' data file, "
               "{} repeated iterations.".format(
                   algorithm_name, self.data_size, self.repeat_iterations))
         for alg_to_check in algorithms_to_check:
