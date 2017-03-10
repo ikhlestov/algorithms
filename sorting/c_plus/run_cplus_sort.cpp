@@ -63,12 +63,11 @@ int main(int argc, char *argv[])
         }},
     };
     vector<string> functions_names_vec;
-    string functions_names_string;
     for (auto const& k: functions_map)
     {
         functions_names_vec.push_back(k.first);
-        functions_names_string += k.first + ", ";
     }
+    string functions_names_string = join(", ", functions_names_vec);
     string algorithm_name;
     string data_size = "small";
     vector<string> available_data_sizes = {"small", "medium", "large"};
@@ -77,7 +76,7 @@ int main(int argc, char *argv[])
     // parse an arguments
     string help_message = "Args:\n"
                           "\t--algorithm_name/-a string, available: " + functions_names_string + "\n"
-                          "\t--data_size/-d string, choises from {small, medium, large}, default 'small'\n"
+                          "\t--data_size/-d string, choises from {" + join(", ", available_data_sizes) + "}, default 'small'\n"
                           "\t--repeat_iterations/-r int, default 3\n"
                           "Example usage:\n"
                           "\t./run_cplus_sort -a insertion -d medium -r 5";
@@ -120,10 +119,7 @@ int main(int argc, char *argv[])
     if (!(find(available_data_sizes.begin(), available_data_sizes.end(), data_size) != available_data_sizes.end()))
     {
         cout << "You should provide correct data size.\n";
-        cout << "Avaibalde choises are: [";
-        for (string ds: available_data_sizes)
-            cout << ds << " ";
-        cout << "]" << endl;
+        cout << "Available choises are: [" << join(", ", available_data_sizes) << "]" << endl;
         exit(0);
     }
 

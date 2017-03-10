@@ -1,6 +1,6 @@
 #include "utils.h"
 
-std::vector<int> load_data(std::string data_type)
+vector<int> load_data(string data_type)
 {   
     int numbers_total;
 
@@ -13,12 +13,12 @@ std::vector<int> load_data(std::string data_type)
     else
         throw std::invalid_argument("Only choises 'small', 'medium', 'large' are available.");
 
-    const std::string tmp = "data/" + std::to_string(numbers_total) + "_numbers";
+    const string tmp = "data/" + std::to_string(numbers_total) + "_numbers";
     const char *filename = tmp.c_str();
     std::ifstream myfile;
     myfile.open(filename);
 
-    std::vector<int> arr;
+    vector<int> arr;
 
     int number;
     while (myfile >> number)
@@ -28,4 +28,15 @@ std::vector<int> load_data(std::string data_type)
 
     myfile.close();
     return arr;
+}
+
+string join(string joining, vector<string> vec_to_join)
+{
+    string joined_vector;
+    for (int i = 0; i < vec_to_join.size() - 1; i++)
+    {
+        joined_vector += vec_to_join[i] + joining;
+    }
+    joined_vector += vec_to_join[vec_to_join.size() - 1];
+    return joined_vector;
 }
