@@ -3,6 +3,17 @@ Sorting algorithms
 
 Implementations of sorting algorithms. Ranged according to `wiki sorting algorithms page <https://en.wikipedia.org/wiki/Sorting_algorithm>`__.
 
+Algorithms implemented in python, cython and C++. 
+
+**Python**. To check python algorithms you should run ``$ run_python_sort.py`` script. List available arguments with ``$ python run_python_sort.py --help``.
+
+**Cython**. Cython algorithms should be compiled prior to run with ``$ python setup_cython.py build_ext --inplace`` command.
+Also cython itself should be previously installed: ``pip install Cython``. To run cython algorithms check ``run_cython_sort.py`` script. 
+
+**C++**. C++ algorithms also should be compiled. For this execute ``$ make``. After this you may run ``./run_cplus_sort.out`` file to validate C++ versions.
+
+Arguments names should be same for python, cython and C++.
+
 01. Insertion sort
 ~~~~~~~~~~~~~~~~~~
 
