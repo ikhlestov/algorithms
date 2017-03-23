@@ -46,10 +46,17 @@ class Checker:
                   algorithm_name, self.data_size, self.repeat_iterations))
         for alg_to_check in algorithms_to_check:
             print("\n", alg_to_check.__name__)
-            mean_time_cons, sorted_list = self.measure_time_cons(
-                alg_to_check, self.repeat_iterations, self.unsorted_data)
+            mean_time_cons, sorted_list = self.measure_sorting_time_cons(
+                alg_to_check)
             print("Mean time consumption: {}.".format(mean_time_cons))
             self.check_list_was_sorted(sorted_list)
+
+    def measure_sorting_time_cons(self, alg_to_check):
+        """Measure time consumption method only for sorting algorithms.
+        """
+        mean_time_cons, sorted_list = self._measure_time_cons(
+            alg_to_check, self.repeat_iterations, self.unsorted_data)
+        return mean_time_cons, sorted_list
 
     @property
     def unsorted_data(self):
@@ -73,7 +80,7 @@ class Checker:
         return data_to_sort
 
     @staticmethod
-    def measure_time_cons(f, repeat, *args):
+    def _measure_time_cons(f, repeat, *args):
         """Measure time consumption by calling function N repeat times.
         Args:
             f: function to call
